@@ -126,7 +126,7 @@ export class BaseEntity {
      * Creates a new entities and copies all entity properties from given objects into their new entities.
      * Note that it copies only properties that present in entity schema.
      */
-    static create<T extends BaseEntity>(this: ObjectType<T>, entityLikeArray: DeepPartial<T>[]): T;
+    static create<T extends BaseEntity>(this: ObjectType<T>, entityLikeArray: DeepPartial<T>[]): T[];
 
     /**
      * Creates a new entity instance and copies all entity properties from this object into a new entity.
@@ -219,7 +219,7 @@ export class BaseEntity {
 
     /**
      * Deletes entities by a given criteria.
-     * Unlike save method executes a primitive operation without cascades, relations and other operations included.
+     * Unlike remove method executes a primitive operation without cascades, relations and other operations included.
      * Executes fast and efficient DELETE query.
      * Does not check if entity exist in the database.
      */

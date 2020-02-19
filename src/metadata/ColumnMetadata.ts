@@ -159,6 +159,11 @@ export class ColumnMetadata {
     enum?: (string|number)[];
 
     /**
+     * Exact name of enum
+     */
+    enumName?: string;
+
+    /**
      * Generated column expression. Supports only in MySQL.
      */
     asExpression?: string;
@@ -371,6 +376,9 @@ export class ColumnMetadata {
                 this.enum = options.args.options.enum;
             }
         }
+        if (options.args.options.enumName) {
+            this.enumName = options.args.options.enumName;
+        }
         if (options.args.options.asExpression) {
             this.asExpression = options.args.options.asExpression;
             this.generatedType = options.args.options.generatedType ? options.args.options.generatedType : "VIRTUAL";
@@ -391,7 +399,7 @@ export class ColumnMetadata {
             this.transformer = options.args.options.transformer;
         if (options.args.options.spatialFeatureType)
             this.spatialFeatureType = options.args.options.spatialFeatureType;
-        if (options.args.options.srid)
+        if (options.args.options.srid !== undefined)
             this.srid = options.args.options.srid;
         if (this.isTreeLevel)
             this.type = options.connection.driver.mappedDataTypes.treeLevel;

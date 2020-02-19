@@ -11,8 +11,10 @@ import {SqljsDriver} from "./sqljs/SqljsDriver";
 import {MysqlDriver} from "./mysql/MysqlDriver";
 import {PostgresDriver} from "./postgres/PostgresDriver";
 import {ExpoDriver} from "./expo/ExpoDriver";
+import {AuroraDataApiDriver} from "./aurora-data-api/AuroraDataApiDriver";
 import {Driver} from "./Driver";
 import {Connection} from "../connection/Connection";
+import {SapDriver} from "./sap/SapDriver";
 
 /**
  * Helps to create drivers.
@@ -31,6 +33,8 @@ export class DriverFactory {
                 return new PostgresDriver(connection);
             case "cockroachdb":
                 return new CockroachDriver(connection);
+            case "sap":
+                return new SapDriver(connection);
             case "mariadb":
                 return new MysqlDriver(connection);
             case "sqlite":
@@ -51,6 +55,8 @@ export class DriverFactory {
                 return new MongoDriver(connection);
             case "expo":
                 return new ExpoDriver(connection);
+            case "aurora-data-api":
+                return new AuroraDataApiDriver(connection);
             default:
                 throw new MissingDriverError(type);
         }
